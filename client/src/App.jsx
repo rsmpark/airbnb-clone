@@ -1,7 +1,21 @@
-import "./App.css";
+import { Route, Routes } from 'react-router-dom';
+
+import Layout from './layouts/Layout';
+import Index from './pages/Index';
+import Login from './pages/Login';
+
+import './App.css';
 
 function App() {
-    return <div className="bg-red-500">test</div>;
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Index />} />
+        <Route path="/login" element={<Login />} />
+      </Route>
+    </Routes>
+
+  );
 }
 
 export default App;
