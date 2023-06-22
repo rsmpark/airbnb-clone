@@ -1,7 +1,8 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   env: {
-    browser: true, es2020: true,
+    browser: true,
+    es2020: true,
   },
   extends: [
     "airbnb",
@@ -11,19 +12,18 @@ module.exports = {
     "plugin:react-hooks/recommended",
   ],
   parserOptions: {
-    ecmaVersion: "latest", sourceType: "module",
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
   settings: {
     react: {
       version: "18.2",
     },
   },
-  plugins: [
-    "react-refresh",
-    "simple-import-sort",
-  ],
+  plugins: ["react-refresh", "simple-import-sort"],
   rules: {
     quotes: [2, "double", { avoidEscape: true }],
+    "no-alert": "off",
     "react-refresh/only-export-components": "warn",
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     "simple-import-sort/imports": [
