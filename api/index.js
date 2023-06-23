@@ -58,7 +58,7 @@ app.post("/login", async (req, res) => {
 
       if (pwOk) {
         jwt.sign(
-          { email: userDoc.email, id: userDoc._id },
+          { email: userDoc.email, id: userDoc._id, name: userDoc.name },
           jwtSecret,
           {},
           (err, token) => {

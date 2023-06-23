@@ -7,9 +7,14 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!user) {
-      axios.get("/profile");
-    }
+    const fetchUser = async () => {
+      if (!user) {
+        const { data } = await axios.get("/profile");
+        setUser(data);
+      }
+    };
+
+    fetchUser();
   }, []);
 
   const value = useMemo(() => ({ user, setUser }), [user]);
