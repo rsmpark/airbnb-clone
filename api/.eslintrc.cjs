@@ -17,5 +17,6 @@ module.exports = {
   plugins: [],
   rules: {
     quotes: [2, "double", { avoidEscape: true }],
+    "no-underscore-dangle": "off",
   },
 };

@@ -10,6 +10,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
+    "prettier",
   ],
   parserOptions: {
     ecmaVersion: "latest",
@@ -25,6 +26,7 @@ module.exports = {
     quotes: [2, "double", { avoidEscape: true }],
     "no-alert": "off",
     "react-refresh/only-export-components": "warn",
+    "react/prop-types": "off",
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     "simple-import-sort/imports": [
       "error",
