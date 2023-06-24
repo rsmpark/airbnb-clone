@@ -58,7 +58,7 @@ app.post("/login", async (req, res) => {
 
       if (pwOk) {
         jwt.sign(
-          { email: userDoc.email, id: userDoc._id, name: userDoc.name },
+          { email: userDoc.email, id: userDoc._id },
           jwtSecret,
           {},
           (err, token) => {
@@ -81,15 +81,19 @@ app.get("/profile", (req, res) => {
   const { token } = req.cookies;
 
   if (token) {
-    jwt.verify(token, jwtSecret, {}, (err, user) => {
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
       if (err) throw err;
 
-      res.json(user);
+      const { name, email, _id } = await User.findById(userData.id);
+      res.json({ name, email, _id });
     });
   } else {
     res.json(null);
   }
-  res.json(token);
+});
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "").json(true);
 });
 
 app.listen(4000);
