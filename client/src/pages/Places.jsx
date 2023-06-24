@@ -56,14 +56,11 @@ export default function Places() {
       {action === "new" && (
         <div>
           <form action="">
-            <h2 className="text-2xl mt-4">Title</h2>
-            <p className="text-gray-500 text-sm">Title for your place</p>
+            {preInput("Title", "Title for your place")}
             <input type="text" placeholder="title, for example: Apartment" />
-            <h2 className="text-2xl mt-4">Address</h2>
-            <p className="text-gray-500 text-sm">Address for your place</p>
+            {preInput("Address", "Address for your place")}
             <input type="text" placeholder="address" />
-            <h2 className="text-2xl mt-4">Photos</h2>
-            <p className="text-gray-500 text-sm">more = better</p>
+            {preInput("Photos", "more = better")}
             <div className="flex gap-2">
               <input type="text" placeholder="Add using a link .... jpg" />
               <button type="button" className="bg-gray-200 w-initial rounded-2xl px-4">
@@ -92,11 +89,9 @@ export default function Places() {
                 Upload
               </button>
             </div>
-            <h2 className="text-2xl mt-4">Description</h2>
-            <p className="text-gray-500 text-sm">description of the place</p>
+            {preInput("Description", "description of the place")}
             <textarea name="description" cols="30" rows="10" />
-            <h2 className="text-2xl mt-4">Perks</h2>
-            <p className="text-gray-500 text-sm">Select all the perks</p>
+            {preInput("Perks", "Select all the perks")}
             <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
               <label
                 htmlFor="wifi"
@@ -225,11 +220,9 @@ export default function Places() {
                 <span id="groups">Groups</span>
               </label>
             </div>
-            <h2 className="text-2xl mt-4">Additional Details</h2>
-            <p className="text-gray-500 text-sm">House rules ,etc</p>
+            {preInput("Additional Details", "House rules, etc...")}
             <textarea />
-            <h2 className="text-2xl mt-4">Check In/Out Times</h2>
-            <p className="text-gray-500 text-sm">Add check in/out times</p>
+            {preInput("Check In/Out Times", "Add check in/out times")}
             <div className="grid gap-2 sm:grid-cols-3">
               <div>
                 <h3 className="mt-2 -mb-1">Check In time</h3>
