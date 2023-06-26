@@ -111,20 +111,20 @@ export default function Places() {
                 Add&nbsp;Photo
               </button>
             </div>
-            <div className="mt-2 grid grid-cols-3 md-grid-cols-4 lg:grid-cols-6 gap-2">
+            <div className="mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
               {addedPhotos.length > 0 &&
                 addedPhotos.map((link) => (
-                  <div key={link}>
+                  <div key={link} className="h-32 flex relative">
                     <img
-                      className="rounded-2xl"
+                      className="rounded-2xl w-full object-cover"
                       src={`http://localhost:4000/uploads/${link}`}
                       alt=""
                     />
                   </div>
                 ))}
               <label
-                className="flex items-center justify-center gap-1 border bg-transparent rounded-2xl 
-                           p-2 text-2xl text-gray-500 pointer cursor-pointer"
+                className="h-32 cursor-pointer flex items-center gap-1 justify-center 
+                            border bg-transparent rounded-2xl p-2 text-2xl text-gray-600"
                 type="button"
                 htmlFor="upload-by-device"
               >
