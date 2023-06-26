@@ -25,6 +25,7 @@ module.exports = {
   rules: {
     quotes: [2, "double", { avoidEscape: true }],
     "no-alert": "off",
+    "no-plusplus": "off",
     "no-shadow": "warn",
     "react-refresh/only-export-components": "warn",
     "react/prop-types": "off",

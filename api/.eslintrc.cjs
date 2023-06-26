@@ -18,5 +18,6 @@ module.exports = {
   rules: {
     quotes: [2, "double", { avoidEscape: true }],
     "no-underscore-dangle": "off",
+    "no-plusplus": off,
   },
 };

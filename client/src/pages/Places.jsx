@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 import Perks from "./Perks";
 
@@ -28,6 +29,28 @@ export default function Places() {
       {inputDescription(description)}
     </>
   );
+
+  const addPhotoByLink = async (ev) => {
+    ev.preventDefault();
+    const { data: filename } = await axios.post("upload-by-link", { link: photoLink });
+    setAddedPhotos((prev) => [...prev, filename]);
+    setPhotoLink("");
+  };
+
+  const uploadPhoto = async (ev) => {
+    const { files } = ev.target;
+    const formData = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append("photos", files[i]);
+    }
+
+    const { data: filenames } = await axios.post("/upload", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    setAddedPhotos((prev) => [...prev, ...filenames]);
+  };
 
   return (
     <div>
@@ -80,15 +103,38 @@ export default function Places() {
                 onChange={(ev) => setPhotoLink(ev.target.value)}
                 placeholder="Add using a link .... jpg"
               />
-              <button type="button" className="bg-gray-200 w-initial rounded-2xl px-4">
+              <button
+                type="button"
+                className="bg-gray-200 w-initial rounded-2xl px-4"
+                onClick={addPhotoByLink}
+              >
                 Add&nbsp;Photo
               </button>
             </div>
-            <div className="mt-2 grid grid-cols-3 md-grid-cols-4 lg:grid-cols-6">
-              <button
-                className="flex justify-center gap-1 border bg-transparent rounded-2xl p-8 text-2xl text-gray-500"
+            <div className="mt-2 grid grid-cols-3 md-grid-cols-4 lg:grid-cols-6 gap-2">
+              {addedPhotos.length > 0 &&
+                addedPhotos.map((link) => (
+                  <div key={link}>
+                    <img
+                      className="rounded-2xl"
+                      src={`http://localhost:4000/uploads/${link}`}
+                      alt=""
+                    />
+                  </div>
+                ))}
+              <label
+                className="flex items-center justify-center gap-1 border bg-transparent rounded-2xl 
+                           p-2 text-2xl text-gray-500 pointer cursor-pointer"
                 type="button"
+                htmlFor="upload-by-device"
               >
+                <input
+                  type="file"
+                  multiple
+                  className="hidden"
+                  id="upload-by-device"
+                  onChange={uploadPhoto}
+                />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -104,7 +150,7 @@ export default function Places() {
                   />
                 </svg>
                 Upload
-              </button>
+              </label>
             </div>
             {preInput("Description", "description of the place")}
             <textarea
