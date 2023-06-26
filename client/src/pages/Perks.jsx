@@ -1,11 +1,20 @@
 export default function Perks({ selected, onChange }) {
+  const handleCbClick = (ev) => {
+    const { checked, name } = ev.target;
+
+    if (checked) {
+      onChange([...selected, name]);
+    } else {
+      onChange([...selected.filter((perk) => perk !== name)]);
+    }
+  };
   return (
     <>
       <label
         htmlFor="wifi"
         className="border p-4 flex rounded-2xl gap-2 itmes-center cursor-pointer"
       >
-        <input type="checkbox" />
+        <input type="checkbox" name="wifi" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -26,7 +35,7 @@ export default function Perks({ selected, onChange }) {
         htmlFor="parking"
         className="border p-4 flex rounded-2xl gap-2 itmes-center cursor-pointer"
       >
-        <input type="checkbox" />
+        <input type="checkbox" name="parking" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -47,7 +56,7 @@ export default function Perks({ selected, onChange }) {
         htmlFor="tv"
         className="border p-4 flex rounded-2xl gap-2 itmes-center cursor-pointer"
       >
-        <input type="checkbox" />
+        <input type="checkbox" name="tv" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -68,7 +77,7 @@ export default function Perks({ selected, onChange }) {
         htmlFor="pets"
         className="border p-4 flex rounded-2xl gap-2 itmes-center cursor-pointer"
       >
-        <input type="checkbox" />
+        <input type="checkbox" name="pets" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -89,7 +98,7 @@ export default function Perks({ selected, onChange }) {
         htmlFor="entrance"
         className="border p-4 flex rounded-2xl gap-2 itmes-center cursor-pointer"
       >
-        <input type="checkbox" />
+        <input type="checkbox" name="entrance" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -110,7 +119,7 @@ export default function Perks({ selected, onChange }) {
         htmlFor="groups"
         className="border p-4 flex rounded-2xl gap-2 itmes-center cursor-pointer"
       >
-        <input type="checkbox" />
+        <input type="checkbox" name="groups" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
