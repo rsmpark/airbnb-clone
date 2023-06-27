@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const registerUser = (ev) => {
     ev.preventDefault();
@@ -17,10 +18,16 @@ export default function Register() {
         password,
       });
       alert("Registration successful.");
+      setRedirect(true);
     } catch (e) {
       alert("Registration unsuccessful.");
     }
   };
+
+  if (redirect) {
+    // TODO: Repalce with loaders
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div className="mt-4 grow flex items-center justify-around">
