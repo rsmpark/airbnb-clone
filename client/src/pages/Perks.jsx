@@ -8,6 +8,8 @@ export default function Perks({ selected, onChange }) {
       onChange([...selected.filter((perk) => perk !== name)]);
     }
   };
+
+  // TODO: fix checkbox to be selected when the whole div is clicked
   return (
     <>
       <label
@@ -18,6 +20,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("wifi")}
           name="wifi"
+          id="wifi"
           onChange={handleCbClick}
         />
         <svg
@@ -44,6 +47,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("parking")}
           name="parking"
+          id="parking"
           onChange={handleCbClick}
         />
         <svg
@@ -70,6 +74,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("tv")}
           name="tv"
+          id="tv"
           onChange={handleCbClick}
         />
         <svg
@@ -96,6 +101,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("pets")}
           name="pets"
+          id="pets"
           onChange={handleCbClick}
         />
         <svg
@@ -122,6 +128,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("entrance")}
           name="entrance"
+          id="entrance"
           onChange={handleCbClick}
         />
         <svg
@@ -148,6 +155,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("groups")}
           name="groups"
+          id="groups"
           onChange={handleCbClick}
         />
         <svg
