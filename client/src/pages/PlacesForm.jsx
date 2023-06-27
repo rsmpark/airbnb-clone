@@ -17,6 +17,7 @@ export default function PlacesForm() {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
+  const [price, setPrice] = useState(100);
   const [redirect, setRedirect] = useState(false);
   // TODO: use reducers
 
@@ -34,6 +35,7 @@ export default function PlacesForm() {
       setCheckIn(data.checkIn);
       setCheckOut(data.checkOut);
       setMaxGuests(data.maxGuests);
+      setPrice(data.price);
     };
 
     fetchPlaces();
@@ -64,6 +66,7 @@ export default function PlacesForm() {
       checkIn,
       checkOut,
       maxGuests,
+      price,
     };
 
     if (id) {
@@ -112,7 +115,7 @@ export default function PlacesForm() {
         {preInput("Additional Details", "House rules, etc...")}
         <textarea value={addInfo} onChange={(ev) => setAddInfo(ev.target.value)} />
         {preInput("Check In/Out Times", "Add check in/out times")}
-        <div className="grid gap-2 sm:grid-cols-3">
+        <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
           <div>
             <h3 className="mt-2 -mb-1">Check In time</h3>
             <input
@@ -137,6 +140,15 @@ export default function PlacesForm() {
               type="number"
               value={maxGuests}
               onChange={(ev) => setMaxGuests(ev.target.value)}
+              placeholder=""
+            />
+          </div>
+          <div>
+            <h3 className="mt-2 -mb-1">Price per Night</h3>
+            <input
+              type="number"
+              value={price}
+              onChange={(ev) => setPrice(ev.target.value)}
               placeholder=""
             />
           </div>
