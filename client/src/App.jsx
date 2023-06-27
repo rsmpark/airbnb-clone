@@ -3,9 +3,11 @@ import axios from "axios";
 
 import { UserContextProvider } from "./context/UserContext";
 import Layout from "./layouts/Layout";
-import Account from "./pages/Account";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
+import Places from "./pages/Places";
+import PlacesForm from "./pages/PlacesForm";
+import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 
 import "./App.css";
@@ -21,8 +23,9 @@ function App() {
           <Route index element={<Index />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="account/:subpage?" element={<Account />} />
-          <Route path="account/:subpage/:action" element={<Account />} />
+          <Route path="account" element={<Profile />} />
+          <Route path="account/places" element={<Places />} />
+          <Route path="account/places/new" element={<PlacesForm />} />
         </Route>
       </Routes>
     </UserContextProvider>

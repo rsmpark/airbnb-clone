@@ -7,7 +7,7 @@ import { UserContext } from "../context/UserContext";
 import AccountNav from "./AccountNav";
 import Places from "./Places";
 
-export default function Account() {
+export default function Profile() {
   const [redirect, setRedirect] = useState(null);
   const { user, ready, setUser } = useContext(UserContext);
   let { subpage } = useParams();
