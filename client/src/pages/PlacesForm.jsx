@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 
+import AccountNav from "./AccountNav";
 import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
 
@@ -44,14 +46,17 @@ export default function PlacesForm() {
     };
 
     await axios.post("/places", placeData);
+
+    setRedirect(true);
   };
 
-  if (redirect && action !== "new") {
-    return <Navigate to="account/places" />;
+  if (redirect) {
+    return <Navigate to="/account/places" />;
   }
 
   return (
     <div>
+      <AccountNav />
       <form onSubmit={addNewPlace}>
         {preInput("Title", "Title for your place")}
         <input
