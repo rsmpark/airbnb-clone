@@ -27,6 +27,7 @@ module.exports = {
     "no-alert": "off",
     "no-plusplus": "off",
     "no-shadow": "warn",
+    "no-underscore-dangle": "off",
     "react-refresh/only-export-components": "warn",
     "react/prop-types": "off",
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
