@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import AccountNav from "./AccountNav";
@@ -7,6 +7,7 @@ import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
 
 export default function PlacesForm() {
+  const { id } = useParams();
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [addedPhotos, setAddedPhotos] = useState([]);
@@ -18,6 +19,25 @@ export default function PlacesForm() {
   const [maxGuests, setMaxGuests] = useState(1);
   const [redirect, setRedirect] = useState(false);
   // TODO: use reducers
+
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchPlaces = async () => {
+      const { data } = await axios.get(`/places/${id}`);
+      setTitle(data.title);
+      setAddress(data.address);
+      setAddedPhotos(data.photos);
+      setDescription(data.description);
+      setPerks(data.perks);
+      setAddInfo(data.addInfo);
+      setCheckIn(data.checkIn);
+      setCheckOut(data.checkOut);
+      setMaxGuests(data.maxGuests);
+    };
+
+    fetchPlaces();
+  }, [id]);
 
   const inputHeader = (text) => <h2 className="text-2xl mt-4">{text}</h2>;
 
@@ -31,8 +51,9 @@ export default function PlacesForm() {
     </>
   );
 
-  const addNewPlace = async (ev) => {
+  const savePlace = async (ev) => {
     ev.preventDefault();
+
     const placeData = {
       title,
       address,
@@ -45,7 +66,11 @@ export default function PlacesForm() {
       maxGuests,
     };
 
-    await axios.post("/places", placeData);
+    if (id) {
+      await axios.put("/places", { id, ...placeData });
+    } else {
+      await axios.post("/places", placeData);
+    }
 
     setRedirect(true);
   };
@@ -57,7 +82,7 @@ export default function PlacesForm() {
   return (
     <div>
       <AccountNav />
-      <form onSubmit={addNewPlace}>
+      <form onSubmit={savePlace}>
         {preInput("Title", "Title for your place")}
         <input
           type="text"
