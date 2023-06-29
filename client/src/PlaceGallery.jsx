@@ -30,6 +30,7 @@ export default function PlaceGallery({ place }) {
           src={`http://localhost:4000/uploads/${photo.url}`}
           alt="single"
           className="h-full w-full object-cover"
+          style={{ maxHeight: "46rem" }}
         />
       </div>
     ),
