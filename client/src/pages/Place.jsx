@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import AddressLink from "../AddressLink";
-import PlaceGallery from "../PlaceGallery";
 import BookingWidget from "../BookingWidget";
+import PlaceGallery from "../PlaceGallery";
 
 export default function Place() {
   const { id } = useParams();

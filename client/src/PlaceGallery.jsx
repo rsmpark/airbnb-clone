@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
 
+import Image from "./UI/Image";
+
 export default function PlaceGallery({ place }) {
   const [showAllPhotos, setShowAllPhotos] = useState(false);
 
@@ -26,8 +28,8 @@ export default function PlaceGallery({ place }) {
   const singlePaneElems = singlePane.map((photo, i) => ({
     content: (
       <div key={photo.url} style={{ gridArea: "1/1/auto/auto" }}>
-        <img
-          src={`http://localhost:4000/uploads/${photo.url}`}
+        <Image
+          src={photo.url}
           alt="single"
           className="h-full w-full object-cover"
           style={{ maxHeight: "46rem" }}
@@ -50,16 +52,16 @@ export default function PlaceGallery({ place }) {
         }}
       >
         <div key={photo.p1.url} style={{ gridArea: "1/1/auto/auto" }}>
-          <img
-            src={`http://localhost:4000/uploads/${photo.p1.url}`}
+          <Image
+            src={photo.p1.url}
             alt="double"
             className="h-full w-full object-cover "
           />
         </div>
         {photo.p2 && (
           <div key={photo.p2.url} style={{ gridArea: "1/2/auto/auto" }}>
-            <img
-              src={`http://localhost:4000/uploads/${photo.p2.url}`}
+            <Image
+              src={photo.p2.url}
               alt="double"
               className="h-full w-full object-cover"
             />
@@ -135,10 +137,10 @@ export default function PlaceGallery({ place }) {
         <div>
           {place.photos?.[0] && (
             <div>
-              <img
+              <Image
                 onClick={() => setShowAllPhotos(true)}
                 className="aspect-square cursor-pointer object-cover"
-                src={`http://localhost:4000/uploads/${place.photos[0].url}`}
+                src={place.photos[0].url}
                 alt=""
               />
             </div>
@@ -146,19 +148,19 @@ export default function PlaceGallery({ place }) {
         </div>
         <div className="grid">
           {place.photos?.[1] && (
-            <img
+            <Image
               onClick={() => setShowAllPhotos(true)}
               className="aspect-square cursor-pointer object-cover"
-              src={`http://localhost:4000/uploads/${place.photos[1].url}`}
+              src={place.photos[1].url}
               alt=""
             />
           )}
           <div className="overflow-hidden">
             {place.photos?.[2] && (
-              <img
+              <Image
                 onClick={() => setShowAllPhotos(true)}
                 className="aspect-square cursor-pointer object-cover relative top-2"
-                src={`http://localhost:4000/uploads/${place.photos[2].url}`}
+                src={place.photos[2].url}
                 alt=""
               />
             )}

@@ -78,11 +78,7 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
         {addedPhotos.length > 0 &&
           addedPhotos.map((photo) => (
             <div key={photo.url} className="h-32 flex relative">
-              <img
-                className="rounded-2xl w-full object-cover"
-                src={`http://localhost:4000/uploads/${photo.url}`}
-                alt=""
-              />
+              <Image className="rounded-2xl w-full object-cover" src={photo.url} alt="" />
               <button
                 type="button"
                 onClick={() => removePhoto(photo)}

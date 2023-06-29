@@ -5,7 +5,7 @@ import axios from "axios";
 import Perks from "../Perks";
 import PhotosUploader from "../PhotosUploader";
 
-import AccountNav from "./AccountNav";
+import AccountNav from "../layouts/AccountNav";
 
 export default function PlacesForm() {
   const { id } = useParams();

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { UserContext } from "../context/UserContext";
 
-import AccountNav from "./AccountNav";
+import AccountNav from "../layouts/AccountNav";
 import Places from "./Places";
 
 export default function Profile() {
