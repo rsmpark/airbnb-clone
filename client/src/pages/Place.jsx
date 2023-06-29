@@ -4,6 +4,7 @@ import axios from "axios";
 
 import AddressLink from "../AddressLink";
 import PlaceGallery from "../PlaceGallery";
+import BookingWidget from "../BookingWidget";
 
 export default function Place() {
   const { id } = useParams();
@@ -41,7 +42,9 @@ export default function Place() {
           <br />
           Max number of guests: {place.maxGuests}
         </div>
-        <div>{/* <BookingWidget place={place} /> */}</div>
+        <div>
+          <BookingWidget place={place} />
+        </div>
       </div>
       <div className="bg-white -mx-8 px-8 py-8 border-t">
         <div>
