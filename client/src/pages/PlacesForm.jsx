@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 
+import Perks from "../Perks";
+import PhotosUploader from "../PhotosUploader";
+
 import AccountNav from "./AccountNav";
-import Perks from "./Perks";
-import PhotosUploader from "./PhotosUploader";
 
 export default function PlacesForm() {
   const { id } = useParams();

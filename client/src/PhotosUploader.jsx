@@ -11,7 +11,9 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
         const { data: filename } = await axios.post("upload-by-link", {
           link: photoLink,
         });
-        onChange((prev) => [...prev, filename]);
+
+        const photo = { url: filename, order: addedPhotos.length };
+        onChange((prev) => [...prev, photo]);
         setPhotoLink("");
       }
     } catch (e) {
@@ -31,17 +33,28 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    onChange((prev) => [...prev, ...filenames]);
+    const photos = [];
+
+    filenames.forEach((filename, i) => {
+      photos.push({
+        url: filename,
+        order: addedPhotos.length + i,
+      });
+    });
+
+    onChange((prev) => [...prev, ...photos]);
   };
 
-  const removePhoto = (filename) => {
-    onChange(addedPhotos.filter((photo) => photo !== filename));
+  const removePhoto = (selectedPhoto) => {
+    onChange(addedPhotos.filter((photo) => photo.url !== selectedPhoto.url));
   };
 
-  const selectMainPhoto = (filename) => {
-    // TODO: change main photo only when form is submitted
-    const unselectedPhotos = addedPhotos.filter((photo) => photo !== filename);
-    onChange([filename, ...unselectedPhotos]);
+  const selectMainPhoto = (selectedPhoto) => {
+    const unselectedPhotos = addedPhotos.filter(
+      (photo) => photo.url !== selectedPhoto.url
+    );
+
+    onChange([selectedPhoto, ...unselectedPhotos]);
   };
 
   return (
@@ -63,16 +76,16 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
       </div>
       <div className="mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
         {addedPhotos.length > 0 &&
-          addedPhotos.map((link) => (
-            <div key={link} className="h-32 flex relative">
+          addedPhotos.map((photo) => (
+            <div key={photo.url} className="h-32 flex relative">
               <img
                 className="rounded-2xl w-full object-cover"
-                src={`http://localhost:4000/uploads/${link}`}
+                src={`http://localhost:4000/uploads/${photo.url}`}
                 alt=""
               />
               <button
                 type="button"
-                onClick={() => removePhoto(link)}
+                onClick={() => removePhoto(photo)}
                 className="absolute bottom-1 right-1 text-white
                bg-black bg-opacity-50 py-2 px-3 rounded-xl"
               >
@@ -93,11 +106,11 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
               </button>
               <button
                 type="button"
-                onClick={() => selectMainPhoto(link)}
+                onClick={() => selectMainPhoto(photo)}
                 className="absolute bottom-1 left-1 text-white
                bg-black bg-opacity-50 py-2 px-3 rounded-xl"
               >
-                {link === addedPhotos[0] && (
+                {photo?.url === addedPhotos[0].url && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -111,7 +124,7 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
                     />
                   </svg>
                 )}
-                {link !== addedPhotos[0] && (
+                {photo?.url !== addedPhotos[0].url && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

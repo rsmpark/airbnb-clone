@@ -53,7 +53,7 @@ export default function Places() {
                 {place.photos.length > 0 && (
                   <img
                     className="object-cover"
-                    src={`http://localhost:4000/uploads/${place.photos[0]}`}
+                    src={`http://localhost:4000/uploads/${place.photos[0].url}`}
                     alt="place"
                   />
                 )}
