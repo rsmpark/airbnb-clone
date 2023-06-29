@@ -4,9 +4,11 @@ import Header from "./Header";
 
 export default function Layout() {
   return (
-    <div className="p-4 flex flex-col min-h-screen">
+    <div className="py-6 px-9 flex flex-col min-h-screen">
       <Header />
-      <Outlet />
+      <div className="mx-auto pt-8">
+        <Outlet />
+      </div>
     </div>
   );
 }

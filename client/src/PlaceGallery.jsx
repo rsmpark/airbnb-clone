@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactDOM from "react-dom";
 
 export default function PlaceGallery({ place }) {
   const [showAllPhotos, setShowAllPhotos] = useState(false);
@@ -69,54 +70,61 @@ export default function PlaceGallery({ place }) {
     order: i * 2 + 2,
   }));
 
-  if (showAllPhotos) {
-    return (
-      <div className="absolute inset-0 bg-white min-h-screen">
-        <div className="bg-white p-8 grid gap-4">
-          <div>
-            <h2 className="text-3xl mr-48">Photos of {place.title}</h2>
-            <button
-              type="button"
-              onClick={() => setShowAllPhotos(false)}
-              className="fixed right-12 top-8 flex gap-1 py-2 px-3 rounded-2xl shadow-sm
-                        shadow-slate-400 bg-white text-black bg-opacity-90"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6"
+  // eslint-disable-next-line react/no-unstable-nested-components, react/function-component-definition
+  const ShowAllPhotoGallery = () => (
+    <div className="bg-white min-h-screen max-h-max max-w-full w-screen">
+      <div className="sticky flex top-0 p-2 py-2 bg-white">
+        <button
+          type="button"
+          onClick={() => setShowAllPhotos(false)}
+          className="py-2 px-3"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+      <div className="bg-white p-8 grid gap-4 max-w-6xl mx-auto">
+        <div
+          style={{ display: "grid", gap: "8px", gripTemplateColumns: "1fr" }}
+          className="mx-20"
+        >
+          {photoExists &&
+            singlePaneElems.map((e) => (
+              <div
+                key={e.key}
+                style={{ display: "grid", gridArea: `${e.order}/1/auto/auto` }}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
-          <div style={{ display: "grid", gap: "8px", gripTemplateColumns: "1fr" }}>
-            {photoExists &&
-              singlePaneElems.map((e) => (
-                <div
-                  key={e.key}
-                  style={{ display: "grid", gridArea: `${e.order}/1/auto/auto` }}
-                >
-                  {e.content}
-                </div>
-              ))}
-            {photoExists &&
-              doublePaneElems.map((e) => (
-                <div
-                  key={e.key}
-                  style={{ display: "grid", gridArea: `${e.order}/1/auto/auto` }}
-                >
-                  {e.content}
-                </div>
-              ))}
-          </div>
+                {e.content}
+              </div>
+            ))}
+          {photoExists &&
+            doublePaneElems.map((e) => (
+              <div
+                key={e.key}
+                style={{ display: "grid", gridArea: `${e.order}/1/auto/auto` }}
+              >
+                {e.content}
+              </div>
+            ))}
         </div>
       </div>
+    </div>
+  );
+
+  if (showAllPhotos) {
+    return ReactDOM.createPortal(
+      <ShowAllPhotoGallery />,
+      document.getElementById("photo-gallery")
     );
   }
 

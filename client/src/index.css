@@ -21,3 +21,12 @@ button {
 button.primary {
   @apply bg-primary p-2 w-full text-white rounded-2xl;
 }
+
+.overlay {
+  z-index: 100;
+  position: absolute;
+}
+
+body {
+  overflow-x: hidden;
+}
