@@ -25,8 +25,6 @@ export default function Place() {
 
   if (!place) return "";
 
-  console.log(place);
-
   return (
     <div className="mt-4 -mx-8 px-8 pt-8 ">
       <div className="mb-5">

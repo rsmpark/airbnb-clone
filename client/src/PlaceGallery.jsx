@@ -8,7 +8,6 @@ export default function PlaceGallery({ place }) {
 
   const singlePane = [];
   const doublePane = [];
-
   for (let i = 0; i < place.photos.length; i++) {
     const photo = place.photos[i];
 
@@ -16,6 +15,7 @@ export default function PlaceGallery({ place }) {
       singlePane.push(photo);
     } else if (i + 1 < place.photos.length) {
       const secondPhoto = place.photos[i + 1];
+
       doublePane.push({ p1: photo, p2: secondPhoto });
       i++;
     } else {
@@ -69,7 +69,8 @@ export default function PlaceGallery({ place }) {
         )}
       </div>
     ),
-    key: photo.p1.url + photo.p2.url,
+    // eslint-disable-next-line no-unsafe-optional-chaining
+    key: photo.p1.url + photo?.p2?.url ?? i,
     order: i * 2 + 2,
   }));
 
