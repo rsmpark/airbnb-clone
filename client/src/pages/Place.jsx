@@ -25,8 +25,10 @@ export default function Place() {
 
   if (!place) return "";
 
+  console.log(place);
+
   return (
-    <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8 max-w-7xl">
+    <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8 ">
       <h1 className="text-3xl">{place.title}</h1>
       <AddressLink>{place.address}</AddressLink>
       <PlaceGallery place={place} />
@@ -50,7 +52,7 @@ export default function Place() {
         <div>
           <h2 className="font-semibold text-2xl">Extra info</h2>
         </div>
-        <div className="mb-4 mt-2 text-sm text-gray-700 leading-5">{place.extraInfo}</div>
+        <div className="mb-4 mt-2 text-sm text-gray-700 leading-5">{place.addInfo}</div>
       </div>
     </div>
   );

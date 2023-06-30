@@ -7,5 +7,5 @@ export default function BookingImg({ place, index = 0, className = null }) {
   if (!className) {
     className = "object-cover";
   }
-  return <Image className={className} src={place.photos[index]} alt="" />;
+  return <Image className={className} src={place.photos[index].url} alt="" />;
 }
