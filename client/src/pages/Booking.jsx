@@ -6,7 +6,7 @@ import AddressLink from "../AddressLink";
 import BookingDates from "../BookingDates";
 import PlaceGallery from "../PlaceGallery";
 
-export default function BookingPage() {
+export default function Booking() {
   const { id } = useParams();
   const [booking, setBooking] = useState(null);
   useEffect(() => {

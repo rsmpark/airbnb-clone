@@ -6,7 +6,7 @@ import BookingDates from "../BookingDates";
 import AccountNav from "../layouts/AccountNav";
 import BookingImg from "../UI/BookingImg";
 
-export default function BookingsPage() {
+export default function Bookings() {
   const [bookings, setBookings] = useState([]);
   useEffect(() => {
     axios.get("/bookings").then((response) => {
