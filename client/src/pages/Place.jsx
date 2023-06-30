@@ -28,9 +28,11 @@ export default function Place() {
   console.log(place);
 
   return (
-    <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8 ">
-      <h1 className="text-3xl">{place.title}</h1>
-      <AddressLink>{place.address}</AddressLink>
+    <div className="mt-4 -mx-8 px-8 pt-8 ">
+      <div className="mb-5">
+        <h1 className="text-4xl font-medium">{place.title}</h1>
+        <AddressLink>{place.address}</AddressLink>
+      </div>
       <PlaceGallery place={place} />
       <div className="mt-8 mb-8 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
         <div>

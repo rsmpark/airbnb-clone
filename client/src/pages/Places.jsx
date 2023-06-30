@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import AccountNav from "../layouts/AccountNav";
+import Image from "../UI/Image";
 
 export default function Places() {
   const [places, setPlaces] = useState([]);
@@ -51,11 +52,7 @@ export default function Places() {
             >
               <div className=" flex w-32 h-32 bg-gray-300 grow shrink-0">
                 {place.photos.length > 0 && (
-                  <img
-                    className="object-cover"
-                    src={`http://localhost:4000/uploads/${place.photos[0].url}`}
-                    alt="place"
-                  />
+                  <Image className="object-cover" src={place.photos[0].url} alt="place" />
                 )}
               </div>
               <div className="grow-0 shrink">
